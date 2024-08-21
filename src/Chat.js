@@ -22,9 +22,21 @@ const Chat = ({ socket, username, room }) => {
   };
 
   useEffect(() => {
+    // When joining the room, retrieve previous messages
+    socket.on("previous_messages", (messages) => {
+      setMessageList(messages);
+    });
+
+    // Listen for new messages
     socket.on("receive-message", (data) => {
       setMessageList((list) => [...list, data]);
     });
+
+    // Clean up the socket listeners on component unmount
+    return () => {
+      socket.off("previous_messages");
+      socket.off("receive-message");
+    };
   }, [socket]);
 
   return (
