@@ -3,7 +3,7 @@ import "./App.css";
 import io from "socket.io-client";
 import Chat from "./Chat";
 
-const socket = io.connect("https://chat-app-backend-gqqg.onrender.com");
+const socket = io.connect("https://chat-app-backend-4ihp.onrender.com");
 
 function App() {
   const [username, setUsername] = useState("");
